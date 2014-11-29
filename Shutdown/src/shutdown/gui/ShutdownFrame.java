@@ -1,4 +1,4 @@
-package Shutdown;
+package shutdown.gui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -8,10 +8,13 @@ import javax.swing.UIManager;
 
 /**
  * Simple GUI based shutdown utility for windows.
+ * 
  * There are 2 buttons and a text field.
  * You can type in a number in minutes into the text field
  * One button will shutdown the computer in the time specified in the text field.
  * The other will cancel your shutdown attempt if you change your mind.
+ * 
+ * @author troy
  */
 public class ShutdownFrame extends JFrame {
 
@@ -65,9 +68,5 @@ public class ShutdownFrame extends JFrame {
 		int y = (dim.height - h) / 2;
 
 		setBounds(x, y, w, h);
-	}
-	
-	public static void main(String[] args) {
-		new ShutdownFrame();
 	}
 }

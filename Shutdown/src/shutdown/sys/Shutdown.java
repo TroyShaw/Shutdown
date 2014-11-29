@@ -1,14 +1,19 @@
-package Shutdown;
+package shutdown.sys;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class provides methods to send the various messages to the OS.
+ * The messages include shutting down/ restart the computer, 
+ * as well as canceling a shutdown message.
+ *
+ * @author troy
+ */
 public final class Shutdown {
-
-	public static final String SHUTDOWN = "/s";
-	public static final String RESTART = "/r";
 	
+	//The max amount of time we can attempt to schedule a shutdown for
 	private static final int MAX_SECONDS = 315360000;
 
 	private Shutdown() {
@@ -26,17 +31,19 @@ public final class Shutdown {
 	
 	/**
 	 * Attempts to shutdown the computer
-	 * @param minutes
-	 * @return
+	 * 
+	 * @param minutes the minutes to shutdown in
+	 * @return if the attempt was successful
 	 */
-	public static boolean initiateShutdown(int minutes, String mode) {
+	public static boolean initiateShutdown(int minutes, ShutdownMode mode) {
+		if (mode == null) throw new NullPointerException("mode cannot be null");
 		if (minutes < 0) throw new IllegalArgumentException("Minutes cannot be negative");
 		if (minutes > maxMinutes()) throw new IllegalArgumentException("Minutes too large");
 
 		List<String> list = new ArrayList<String>();
 
 		list.add("shutdown");
-		list.add(mode);
+		list.add(mode.getFlagString());
 		list.add("/t");
 		list.add(Integer.toString(minutes * 60));
 
@@ -49,7 +56,7 @@ public final class Shutdown {
 	 * Returns true if there was a shutdown and it has now been cancelled.
 	 * Returns false if the computer wasn't currently shutting down.
 	 * 
-	 * @return
+	 * @return true if the cancel was sucessful
 	 */
 	public static boolean cancelShutdown() {
 		List<String> list = new ArrayList<String>();
@@ -67,7 +74,7 @@ public final class Shutdown {
 	 * Executes the given commands in a command prompt.
 	 * 
 	 * @param commands
-	 * @return true if success, false if an error
+	 * @return the appropriate ShutdownResult value, or null if an error occurred
 	 */
 	private static ShutdownResult executeCommand(List<String> commands) {
 		ProcessBuilder cmdProcess = new ProcessBuilder(commands);

@@ -1,4 +1,4 @@
-package Shutdown;
+package shutdown.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -9,6 +9,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+/**
+ * Class represents the status-bar, which is the bar at the bottom of
+ * the GUI which provides information to the user.
+ *
+ * @author troy
+ */
 public class StatusBar extends JPanel {
 	private JLabel label;
 

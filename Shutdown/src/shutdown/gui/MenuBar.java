@@ -1,4 +1,4 @@
-package Shutdown;
+package shutdown.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,12 +7,19 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-
+/**
+ * Class represents the menu-bar for the program.
+ *
+ * @author troy
+ */
 public class MenuBar extends JMenuBar implements ActionListener {
 
 	private JMenu file, helper;
 	private JMenuItem exit, help, about;
 	
+	/**
+	 * Instantiates the menu-bar, setting up event-listeners, etc.
+	 */
 	public MenuBar() {
 		super();
 		

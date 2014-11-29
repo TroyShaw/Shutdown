@@ -1,4 +1,4 @@
-package Shutdown;
+package shutdown.gui;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -15,6 +15,15 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import shutdown.sys.Shutdown;
+import shutdown.sys.ShutdownMode;
+
+/**
+ * Represents the main panel used in the program.
+ * Holds all main text-field, buttons, and status bar.
+ *
+ * @author troy
+ */
 public class ShutdownPanel extends JPanel {
 
 	private JTextField textField;
@@ -22,7 +31,8 @@ public class ShutdownPanel extends JPanel {
 	private JButton startButton, cancelButton;
 
 	private JRadioButton shutdownRButton, restartRButton;
-	private String shutdownMode, messageString;
+	private String messageString;
+	private ShutdownMode shutdownMode;
 	
 	private StatusBar statusBar;
 
@@ -30,7 +40,6 @@ public class ShutdownPanel extends JPanel {
 		initComponents();
 		initListeners();
 		setupLayout();
-
 	}
 
 	private void initComponents() {
@@ -41,16 +50,14 @@ public class ShutdownPanel extends JPanel {
 		startButton = new JButton("Start");
 		cancelButton = new JButton("Cancel");
 
-
 		shutdownRButton = new JRadioButton("Shutdown", true);
 		restartRButton = new JRadioButton("Restart");
-
 
 		ButtonGroup bg = new ButtonGroup();
 		bg.add(shutdownRButton);
 		bg.add(restartRButton);
 
-		shutdownMode = Shutdown.SHUTDOWN;
+		shutdownMode = ShutdownMode.Shutdown;
 		messageString = "Shutting down";
 		
 		statusBar = new StatusBar();
@@ -86,11 +93,11 @@ public class ShutdownPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == shutdownRButton) {
-					shutdownMode = Shutdown.SHUTDOWN;
+					shutdownMode = ShutdownMode.Shutdown;
 					messageString = "Shutting down";
 				}
 				else {
-					shutdownMode = Shutdown.RESTART;
+					shutdownMode = ShutdownMode.Restart;
 					messageString = "Restarting";
 				}
 			}
@@ -125,7 +132,6 @@ public class ShutdownPanel extends JPanel {
 		add(masterPanel);
 		add(statusBar, BorderLayout.SOUTH);
 	}
-
 
 	private void shutdown() {
 		int minutes = 0;
