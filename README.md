@@ -8,4 +8,4 @@ This program allows the user to enter in a time in minutes, and the program will
 The user can both shutdown and restart. 
 The user can also cancel a request while it is happening if they wish.
 
-![Screenshot](http://imgur.com/Ah80pux)
+![Screenshot](http://imgur.com/Ah80pux.png)
