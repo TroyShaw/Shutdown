@@ -9,4 +9,4 @@ The user can both shutdown and restart.
 The user can also cancel a request while it is happening if they wish.
 
 
-![ScreenShot](http://imgur.com/Ah80pux)
+![ScreenShot](https://imgur.com/Ah80pux)
